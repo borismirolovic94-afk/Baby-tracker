@@ -58,14 +58,12 @@ html[data-theme="dark"] {
 }
 
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
   color: var(--text);
 }
-
 #app {
   max-width: 480px;
   margin: 0 auto;
@@ -73,7 +71,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 .top-bar {
   padding: 10px 12px;
   border-bottom: 1px solid var(--border);
@@ -86,18 +83,15 @@ body {
   top: 0;
   z-index: 10;
 }
-
 .top-bar h1 {
   margin: 0;
   font-size: 18px;
 }
-
 .theme-controls {
   display: flex;
   gap: 5px;
   align-items: center;
 }
-
 .theme-toggle,
 .date-nav button {
   background: var(--surface-2);
@@ -108,7 +102,6 @@ body {
   height: 34px;
   box-shadow: var(--shadow);
 }
-
 #themeSelect {
   height: 34px;
   padding: 0 8px;
@@ -119,11 +112,9 @@ body {
   font-size: 12px;
   max-width: 78px;
 }
-
 main {
   padding: 10px 10px 20px;
 }
-
 .date-nav {
   display: flex;
   align-items: center;
@@ -131,7 +122,6 @@ main {
   gap: 8px;
   margin-bottom: 10px;
 }
-
 .date-summary {
   flex: 1;
   text-align: center;
@@ -141,29 +131,24 @@ main {
   padding: 8px 10px;
   box-shadow: var(--shadow);
 }
-
 .current-date {
   font-weight: 700;
   font-size: 14px;
 }
-
 .day-total {
   margin-top: 2px;
   font-size: 11px;
   color: var(--text-muted);
 }
-
 .notes-section,
 .entries-section {
   margin-bottom: 12px;
 }
-
 label {
   display: block;
   margin-bottom: 3px;
   font-size: 12px;
 }
-
 textarea {
   width: 100%;
   padding: 8px 10px;
@@ -175,17 +160,14 @@ textarea {
   box-shadow: var(--shadow);
   font-size: 13px;
 }
-
 textarea::placeholder,
 .field input::placeholder {
   color: var(--text-muted);
 }
-
 .entries-section h2 {
   margin: 0 0 6px 0;
   font-size: 15px;
 }
-
 .entry-card {
   background: var(--card);
   border-radius: 16px;
@@ -194,72 +176,66 @@ textarea::placeholder,
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
 }
-
 .entry-grid-row1 {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1fr);
+  display: grid !important;
+  grid-template-columns: 1fr 0.8fr 1fr !important;
   gap: 6px;
   margin-bottom: 6px;
+  align-items: end;
 }
-
 .entry-grid-row2 {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
   gap: 6px;
   margin-bottom: 6px;
 }
-
 .entry-grid-row3 {
-  display: grid;
-  grid-template-columns: minmax(0, 110px);
+  display: grid !important;
+  grid-template-columns: 120px !important;
   gap: 6px;
 }
-
 .field {
   min-width: 0;
 }
-
 .field label {
   font-size: 10px;
   margin-bottom: 3px;
   color: var(--text-muted);
 }
-
 .field input,
 .field select {
   width: 100%;
-  padding: 8px 8px;
+  padding: 7px 8px;
   border-radius: 10px;
   border: 1px solid var(--border);
   background: var(--input-bg);
   color: var(--text);
   min-height: 34px;
+  height: 34px;
   font-size: 12px;
 }
-
 .check-field {
   min-width: 0;
 }
-
 .check-box {
   min-height: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  font-size: 12px;
+  font-size: 11px;
   white-space: nowrap;
   background: var(--input-bg);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 0 6px;
+  padding: 0 4px;
 }
-
 .check-box input[type="checkbox"] {
   accent-color: var(--accent);
-  transform: scale(0.9);
+  transform: scale(0.85);
+  margin: 0;
 }
-
 .primary {
   width: 100%;
   padding: 11px;
@@ -272,17 +248,6 @@ textarea::placeholder,
   box-shadow: var(--shadow);
   font-size: 14px;
 }
-
 button:active {
   transform: scale(0.98);
-}
-
-@media (max-width: 360px) {
-  .entry-grid-row1 {
-    grid-template-columns: 1fr;
-  }
-
-  .entry-grid-row2 {
-    grid-template-columns: 1fr;
-  }
 }
