@@ -1,6 +1,5 @@
 :root {
   --theme-hue: rose;
-
   --bg: #f6f1f4;
   --surface: #fffafc;
   --surface-2: #f2e9ef;
@@ -76,13 +75,13 @@ body {
 }
 
 .top-bar {
-  padding: 12px 16px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--border);
   background: color-mix(in srgb, var(--surface) 92%, white 8%);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -90,12 +89,12 @@ body {
 
 .top-bar h1 {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .theme-controls {
   display: flex;
-  gap: 6px;
+  gap: 5px;
   align-items: center;
 }
 
@@ -105,30 +104,32 @@ body {
   border: 1px solid var(--border);
   color: var(--text);
   border-radius: 999px;
-  min-width: 40px;
-  height: 40px;
+  min-width: 34px;
+  height: 34px;
   box-shadow: var(--shadow);
 }
 
 #themeSelect {
-  height: 40px;
+  height: 34px;
   padding: 0 8px;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--surface-2);
   color: var(--text);
+  font-size: 12px;
+  max-width: 78px;
 }
 
 main {
-  padding: 12px 16px 24px;
+  padding: 10px 10px 20px;
 }
 
 .date-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .date-summary {
@@ -136,41 +137,43 @@ main {
   text-align: center;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 10px 12px;
+  border-radius: 14px;
+  padding: 8px 10px;
   box-shadow: var(--shadow);
 }
 
 .current-date {
   font-weight: 700;
+  font-size: 14px;
 }
 
 .day-total {
-  margin-top: 4px;
-  font-size: 13px;
+  margin-top: 2px;
+  font-size: 11px;
   color: var(--text-muted);
 }
 
 .notes-section,
 .entries-section {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 label {
   display: block;
-  margin-bottom: 4px;
-  font-size: 14px;
+  margin-bottom: 3px;
+  font-size: 12px;
 }
 
 textarea {
   width: 100%;
-  padding: 10px 12px;
-  border-radius: 14px;
+  padding: 8px 10px;
+  border-radius: 12px;
   border: 1px solid var(--border);
   background: var(--card);
   color: var(--text);
   resize: vertical;
   box-shadow: var(--shadow);
+  font-size: 13px;
 }
 
 textarea::placeholder,
@@ -179,80 +182,87 @@ textarea::placeholder,
 }
 
 .entries-section h2 {
-  margin: 0 0 8px 0;
-  font-size: 16px;
+  margin: 0 0 6px 0;
+  font-size: 15px;
 }
 
 .entry-card {
   background: var(--card);
-  border-radius: 18px;
-  padding: 12px;
-  margin-bottom: 10px;
+  border-radius: 16px;
+  padding: 10px;
+  margin-bottom: 8px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
 }
 
 .entry-grid-row1 {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 8px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
 }
 
 .entry-grid-row2 {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 6px;
 }
 
 .entry-grid-row3 {
   display: grid;
-  grid-template-columns: minmax(130px, 1fr);
-  gap: 8px;
+  grid-template-columns: minmax(0, 110px);
+  gap: 6px;
+}
+
+.field {
+  min-width: 0;
 }
 
 .field label {
-  font-size: 12px;
-  margin-bottom: 4px;
+  font-size: 10px;
+  margin-bottom: 3px;
   color: var(--text-muted);
 }
 
 .field input,
 .field select {
   width: 100%;
-  padding: 10px 12px;
-  border-radius: 12px;
+  padding: 8px 8px;
+  border-radius: 10px;
   border: 1px solid var(--border);
   background: var(--input-bg);
   color: var(--text);
-  min-height: 42px;
+  min-height: 34px;
+  font-size: 12px;
 }
 
 .check-field {
-  flex: 1;
+  min-width: 0;
 }
 
 .check-box {
-  min-height: 42px;
+  min-height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  font-size: 13px;
+  gap: 4px;
+  font-size: 12px;
   white-space: nowrap;
   background: var(--input-bg);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 0 10px;
+  border-radius: 10px;
+  padding: 0 6px;
 }
 
 .check-box input[type="checkbox"] {
   accent-color: var(--accent);
+  transform: scale(0.9);
 }
 
 .primary {
   width: 100%;
-  padding: 12px;
+  padding: 11px;
   border-radius: 999px;
   border: none;
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
@@ -260,17 +270,19 @@ textarea::placeholder,
   font-weight: 700;
   margin-top: 8px;
   box-shadow: var(--shadow);
+  font-size: 14px;
 }
 
 button:active {
   transform: scale(0.98);
 }
 
-@media (max-width: 430px) {
+@media (max-width: 360px) {
   .entry-grid-row1 {
     grid-template-columns: 1fr;
   }
+
   .entry-grid-row2 {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 }
