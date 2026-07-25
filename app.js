@@ -114,51 +114,55 @@ function renderEntryCard(entry, index) {
   const card = document.createElement('div');
   card.className = 'entry-card';
 
-  const topGrid = document.createElement('div');
-  topGrid.className = 'entry-grid-top';
+  const row1 = document.createElement('div');
+  row1.className = 'entry-grid-row1';
 
-  topGrid.appendChild(createInputField('Time', 'time', toTimeString(new Date(entry.time)), (value) => {
+  row1.appendChild(createInputField('Time', 'time', toTimeString(new Date(entry.time)), (value) => {
     getDay(currentDate).entries[index].time = fromTimeString(value, currentDate).toISOString();
     saveToStorage();
   }));
 
-  topGrid.appendChild(createInputField('Quantity (ml)', 'number', entry.amountMl ?? 0, (value) => {
+  row1.appendChild(createInputField('Quantity (ml)', 'number', entry.amountMl ?? 0, (value) => {
     getDay(currentDate).entries[index].amountMl = clamp(parseInt(value || '0', 10), 0, 500);
     saveToStorage();
     renderDay(currentDate);
   }, { min: 0, max: 500, step: 10 }));
 
-  const bottomGrid = document.createElement('div');
-  bottomGrid.className = 'entry-grid-bottom';
-
-  bottomGrid.appendChild(createSelectField('Type', ['breast', 'formula'], entry.type || 'breast', (value) => {
+  row1.appendChild(createSelectField('Type', ['breast', 'formula'], entry.type || 'breast', (value) => {
     getDay(currentDate).entries[index].type = value;
     saveToStorage();
   }));
 
-  bottomGrid.appendChild(createCheckboxField('Pee', !!entry.pee, (checked) => {
+  const row2 = document.createElement('div');
+  row2.className = 'entry-grid-row2';
+
+  row2.appendChild(createCheckboxField('Pee', !!entry.pee, (checked) => {
     getDay(currentDate).entries[index].pee = checked;
     saveToStorage();
   }));
 
-  bottomGrid.appendChild(createCheckboxField('Poo', !!entry.poo, (checked) => {
+  row2.appendChild(createCheckboxField('Poo', !!entry.poo, (checked) => {
     getDay(currentDate).entries[index].poo = checked;
     saveToStorage();
   }));
 
-  bottomGrid.appendChild(createCheckboxField('Puke', !!entry.puke, (checked) => {
+  row2.appendChild(createCheckboxField('Puke', !!entry.puke, (checked) => {
     getDay(currentDate).entries[index].puke = checked;
     saveToStorage();
   }));
 
-  bottomGrid.appendChild(createInputField('Temp (°C)', 'number', entry.temperature ?? '', (value) => {
+  const row3 = document.createElement('div');
+  row3.className = 'entry-grid-row3';
+
+  row3.appendChild(createInputField('Temp (°C)', 'number', entry.temperature ?? '', (value) => {
     const parsed = value === '' ? '' : parseFloat(value);
     getDay(currentDate).entries[index].temperature = Number.isNaN(parsed) ? '' : parsed;
     saveToStorage();
   }, { min: 34, max: 43, step: 0.1 }));
 
-  card.appendChild(topGrid);
-  card.appendChild(bottomGrid);
+  card.appendChild(row1);
+  card.appendChild(row2);
+  card.appendChild(row3);
   return card;
 }
 
@@ -206,9 +210,6 @@ function createCheckboxField(labelText, checked, onChange) {
   const wrapper = document.createElement('div');
   wrapper.className = 'check-field';
 
-  const spacer = document.createElement('label');
-  spacer.textContent = ' ';
-
   const row = document.createElement('label');
   row.className = 'check-box';
 
@@ -220,7 +221,6 @@ function createCheckboxField(labelText, checked, onChange) {
   row.appendChild(input);
   row.appendChild(document.createTextNode(labelText));
 
-  wrapper.appendChild(spacer);
   wrapper.appendChild(row);
   return wrapper;
 }
