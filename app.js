@@ -31,23 +31,19 @@ function init() {
 function wireEvents() {
   dom.prevDay.addEventListener('click', () => changeDay(-1));
   dom.nextDay.addEventListener('click', () => changeDay(1));
-
   dom.themeToggle.addEventListener('click', toggleTheme);
   dom.themeSelect.addEventListener('change', (e) => setHue(e.target.value));
-
   dom.notes.addEventListener('input', () => {
     const day = getDay(currentDate);
     day.note = dom.notes.value;
     saveToStorage();
   });
-
   dom.addEntryBtn.addEventListener('click', () => {
     const day = getDay(currentDate);
     day.entries.push(createEmptyEntry());
     saveToStorage();
     renderDay(currentDate);
   });
-
   let touchStartX = null;
   document.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
@@ -116,18 +112,15 @@ function renderEntryCard(entry, index) {
 
   const row1 = document.createElement('div');
   row1.className = 'entry-grid-row1';
-
   row1.appendChild(createInputField('Time', 'time', toTimeString(new Date(entry.time)), (value) => {
     getDay(currentDate).entries[index].time = fromTimeString(value, currentDate).toISOString();
     saveToStorage();
   }));
-
-  row1.appendChild(createInputField('Quantity (ml)', 'number', entry.amountMl ?? 0, (value) => {
+  row1.appendChild(createInputField('Qty', 'number', entry.amountMl ?? 0, (value) => {
     getDay(currentDate).entries[index].amountMl = clamp(parseInt(value || '0', 10), 0, 500);
     saveToStorage();
     renderDay(currentDate);
   }, { min: 0, max: 500, step: 10 }));
-
   row1.appendChild(createSelectField('Type', ['breast', 'formula'], entry.type || 'breast', (value) => {
     getDay(currentDate).entries[index].type = value;
     saveToStorage();
@@ -135,17 +128,14 @@ function renderEntryCard(entry, index) {
 
   const row2 = document.createElement('div');
   row2.className = 'entry-grid-row2';
-
   row2.appendChild(createCheckboxField('Pee', !!entry.pee, (checked) => {
     getDay(currentDate).entries[index].pee = checked;
     saveToStorage();
   }));
-
   row2.appendChild(createCheckboxField('Poo', !!entry.poo, (checked) => {
     getDay(currentDate).entries[index].poo = checked;
     saveToStorage();
   }));
-
   row2.appendChild(createCheckboxField('Puke', !!entry.puke, (checked) => {
     getDay(currentDate).entries[index].puke = checked;
     saveToStorage();
@@ -153,8 +143,7 @@ function renderEntryCard(entry, index) {
 
   const row3 = document.createElement('div');
   row3.className = 'entry-grid-row3';
-
-  row3.appendChild(createInputField('Temp (°C)', 'number', entry.temperature ?? '', (value) => {
+  row3.appendChild(createInputField('Temp', 'number', entry.temperature ?? '', (value) => {
     const parsed = value === '' ? '' : parseFloat(value);
     getDay(currentDate).entries[index].temperature = Number.isNaN(parsed) ? '' : parsed;
     saveToStorage();
@@ -169,16 +158,13 @@ function renderEntryCard(entry, index) {
 function createInputField(labelText, type, value, onChange, attrs = {}) {
   const wrapper = document.createElement('div');
   wrapper.className = 'field';
-
   const label = document.createElement('label');
   label.textContent = labelText;
-
   const input = document.createElement('input');
   input.type = type;
   input.value = value;
   Object.entries(attrs).forEach(([k, v]) => input.setAttribute(k, v));
   input.addEventListener('change', () => onChange(input.value));
-
   wrapper.appendChild(label);
   wrapper.appendChild(input);
   return wrapper;
@@ -187,10 +173,8 @@ function createInputField(labelText, type, value, onChange, attrs = {}) {
 function createSelectField(labelText, options, selected, onChange) {
   const wrapper = document.createElement('div');
   wrapper.className = 'field';
-
   const label = document.createElement('label');
   label.textContent = labelText;
-
   const select = document.createElement('select');
   options.forEach((optionValue) => {
     const opt = document.createElement('option');
@@ -200,7 +184,6 @@ function createSelectField(labelText, options, selected, onChange) {
     select.appendChild(opt);
   });
   select.addEventListener('change', () => onChange(select.value));
-
   wrapper.appendChild(label);
   wrapper.appendChild(select);
   return wrapper;
@@ -209,18 +192,14 @@ function createSelectField(labelText, options, selected, onChange) {
 function createCheckboxField(labelText, checked, onChange) {
   const wrapper = document.createElement('div');
   wrapper.className = 'check-field';
-
   const row = document.createElement('label');
   row.className = 'check-box';
-
   const input = document.createElement('input');
   input.type = 'checkbox';
   input.checked = checked;
   input.addEventListener('change', () => onChange(input.checked));
-
   row.appendChild(input);
   row.appendChild(document.createTextNode(labelText));
-
   wrapper.appendChild(row);
   return wrapper;
 }
@@ -231,15 +210,7 @@ function calculateDayTotal(day) {
 
 function createEmptyEntry() {
   const now = new Date();
-  return {
-    time: now.toISOString(),
-    amountMl: 0,
-    type: 'breast',
-    pee: false,
-    poo: false,
-    puke: false,
-    temperature: ''
-  };
+  return { time: now.toISOString(), amountMl: 0, type: 'breast', pee: false, poo: false, puke: false, temperature: '' };
 }
 
 function ensureDayExists(date) {
@@ -309,12 +280,7 @@ function toIsoDate(date) {
 }
 
 function formatHumanDate(date) {
-  return date.toLocaleDateString(undefined, {
-    weekday: 'short',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
+  return date.toLocaleDateString(undefined, { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
 }
 
 function toTimeString(date) {
