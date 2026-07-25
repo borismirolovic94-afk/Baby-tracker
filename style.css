@@ -1,0 +1,166 @@
+
+:root {
+  --bg: #101317;
+  --card: #181c22;
+  --accent: #4caf50;
+  --accent-soft: rgba(76, 175, 80, 0.1);
+  --text: #ffffff;
+  --text-muted: #a0a4ae;
+  --border: #2a2f38;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: #13171d;
+}
+
+.top-bar h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+main {
+  padding: 12px 16px 24px;
+}
+
+.date-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.date-nav button {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+}
+
+.current-date {
+  font-weight: 600;
+}
+
+.notes-section,
+.entries-section {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  resize: vertical;
+}
+
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.entries-section h2 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.entry-card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+}
+
+.entry-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.entry-row label {
+  font-size: 12px;
+}
+
+.entry-row input,
+.entry-row select {
+  width: 100%;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #1f242c;
+  color: var(--text);
+}
+
+.checkbox-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.checkbox-row label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.checkbox-row input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+.primary {
+  width: 100%;
+  padding: 10px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: var(--text);
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.primary:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f4f5f9;
+    --card: #ffffff;
+    --accent: #4caf50;
+    --accent-soft: rgba(76, 175, 80, 0.08);
+    --text: #111111;
+    --text-muted: #666666;
+    --border: #dde0e8;
+  }
+}

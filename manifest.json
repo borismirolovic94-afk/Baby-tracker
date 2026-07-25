@@ -1,0 +1,10 @@
+
+{
+  "name": "Baby Feed Tracker",
+  "short_name": "FeedTracker",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#101317",
+  "theme_color": "#4caf50",
+  "icons": []
+}

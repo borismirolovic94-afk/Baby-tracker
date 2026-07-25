@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baby Feed Tracker</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top-bar">
+      <h1>Baby Feed Tracker</h1>
+    </header>
+
+    <main>
+      <section class="date-nav">
+        <button id="prevDay" aria-label="Previous day">◀</button>
+        <div id="currentDate" class="current-date"></div>
+        <button id="nextDay" aria-label="Next day">▶</button>
+      </section>
+
+      <section class="notes-section">
+        <label for="dayNotes">Notes</label>
+        <textarea id="dayNotes" rows="3" placeholder="Write notes for this day..."></textarea>
+      </section>
+
+      <section class="entries-section">
+        <h2>Feed entries</h2>
+        <div id="entriesContainer"></div>
+        <button id="addEntryBtn" class="primary">Add feed entry</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
