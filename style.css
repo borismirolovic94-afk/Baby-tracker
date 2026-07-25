@@ -1,22 +1,69 @@
-
 :root {
-  --bg: #101317;
-  --card: #181c22;
-  --accent: #4caf50;
-  --accent-soft: rgba(76, 175, 80, 0.1);
-  --text: #ffffff;
-  --text-muted: #a0a4ae;
-  --border: #2a2f38;
+  --theme-hue: rose;
+
+  --bg: #f6f1f4;
+  --surface: #fffafc;
+  --surface-2: #f2e9ef;
+  --card: #ffffff;
+  --accent: #db6f8e;
+  --accent-2: #8bb8a8;
+  --text: #2e2430;
+  --text-muted: #7f6d78;
+  --border: #e3d6dd;
+  --input-bg: #fffdfd;
+  --button-text: #ffffff;
+  --shadow: 0 8px 24px rgba(115, 87, 101, 0.08);
 }
 
-* {
-  box-sizing: border-box;
+:root[data-theme-hue="mint"] {
+  --bg: #e9f5f1;
+  --surface: #f8fffd;
+  --surface-2: #d7ebe3;
+  --card: #ffffff;
+  --accent: #6fbf8f;
+  --accent-2: #4fa3c5;
+  --text: #203229;
+  --text-muted: #5a7a6b;
+  --border: #c9ded2;
+  --input-bg: #ffffff;
+  --button-text: #ffffff;
+  --shadow: 0 8px 24px rgba(70, 116, 94, 0.12);
 }
+
+:root[data-theme-hue="sky"] {
+  --bg: #edf3fb;
+  --surface: #f9fbff;
+  --surface-2: #dbe5f6;
+  --card: #ffffff;
+  --accent: #5f8fe8;
+  --accent-2: #7ac6f0;
+  --text: #1f2836;
+  --text-muted: #62708a;
+  --border: #c3d2eb;
+  --input-bg: #ffffff;
+  --button-text: #ffffff;
+  --shadow: 0 8px 24px rgba(77, 104, 150, 0.12);
+}
+
+html[data-theme="dark"] {
+  --bg: #1f1b20;
+  --surface: #2a2329;
+  --surface-2: #342b33;
+  --card: #2d2630;
+  --text: #f5edf1;
+  --text-muted: #c8b5bf;
+  --border: #4a3c46;
+  --input-bg: #211b22;
+  --button-text: #1f1b20;
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+}
+
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--bg);
+  background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
   color: var(--text);
 }
 
@@ -31,12 +78,45 @@ body {
 .top-bar {
   padding: 12px 16px;
   border-bottom: 1px solid var(--border);
-  background: #13171d;
+  background: color-mix(in srgb, var(--surface) 92%, white 8%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .top-bar h1 {
   margin: 0;
   font-size: 20px;
+}
+
+.theme-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.theme-toggle,
+.date-nav button {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 999px;
+  min-width: 40px;
+  height: 40px;
+  box-shadow: var(--shadow);
+}
+
+#themeSelect {
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
 }
 
 main {
@@ -47,20 +127,28 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   margin-bottom: 12px;
 }
 
-.date-nav button {
-  background: var(--card);
+.date-summary {
+  flex: 1;
+  text-align: center;
+  background: var(--surface);
   border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 999px;
-  width: 36px;
-  height: 36px;
+  border-radius: 16px;
+  padding: 10px 12px;
+  box-shadow: var(--shadow);
 }
 
 .current-date {
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.day-total {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-muted);
 }
 
 .notes-section,
@@ -76,15 +164,17 @@ label {
 
 textarea {
   width: 100%;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
   border: 1px solid var(--border);
   background: var(--card);
   color: var(--text);
   resize: vertical;
+  box-shadow: var(--shadow);
 }
 
-textarea::placeholder {
+textarea::placeholder,
+.field input::placeholder {
   color: var(--text-muted);
 }
 
@@ -95,72 +185,85 @@ textarea::placeholder {
 
 .entry-card {
   background: var(--card);
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 18px;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.entry-grid-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
   margin-bottom: 8px;
-  border: 1px solid var(--border);
 }
 
-.entry-row {
-  display: flex;
+.entry-grid-bottom {
+  display: grid;
+  grid-template-columns: minmax(110px, 1.3fr) repeat(3, auto) minmax(90px, 0.9fr);
   gap: 8px;
-  margin-bottom: 6px;
+  align-items: end;
 }
 
-.entry-row label {
+.field label {
   font-size: 12px;
+  margin-bottom: 4px;
+  color: var(--text-muted);
 }
 
-.entry-row input,
-.entry-row select {
+.field input,
+.field select {
   width: 100%;
-  padding: 6px;
-  border-radius: 6px;
+  padding: 10px 12px;
+  border-radius: 12px;
   border: 1px solid var(--border);
-  background: #1f242c;
+  background: var(--input-bg);
   color: var(--text);
+  min-height: 42px;
 }
 
-.checkbox-row {
+.check-field {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-size: 13px;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.checkbox-row label {
+.check-box {
+  min-height: 42px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0 10px;
 }
 
-.checkbox-row input[type="checkbox"] {
+.check-box input[type="checkbox"] {
   accent-color: var(--accent);
 }
 
 .primary {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border-radius: 999px;
   border: none;
-  background: var(--accent);
-  color: var(--text);
-  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  color: var(--button-text);
+  font-weight: 700;
   margin-top: 8px;
+  box-shadow: var(--shadow);
 }
 
-.primary:active {
+button:active {
   transform: scale(0.98);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #f4f5f9;
-    --card: #ffffff;
-    --accent: #4caf50;
-    --accent-soft: rgba(76, 175, 80, 0.08);
-    --text: #111111;
-    --text-muted: #666666;
-    --border: #dde0e8;
+@media (max-width: 430px) {
+  .entry-grid-bottom {
+    grid-template-columns: 1fr 1fr;
   }
 }
