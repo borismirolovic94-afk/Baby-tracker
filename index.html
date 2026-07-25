@@ -12,12 +12,23 @@
   <div id="app">
     <header class="top-bar">
       <h1>Baby Feed Tracker</h1>
+      <div class="theme-controls">
+        <select id="themeSelect" aria-label="Color theme">
+          <option value="rose">Rose</option>
+          <option value="mint">Mint</option>
+          <option value="sky">Sky</option>
+        </select>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light">🌙</button>
+      </div>
     </header>
 
     <main>
       <section class="date-nav">
         <button id="prevDay" aria-label="Previous day">◀</button>
-        <div id="currentDate" class="current-date"></div>
+        <div class="date-summary">
+          <div id="currentDate" class="current-date"></div>
+          <div id="dayTotal" class="day-total"></div>
+        </div>
         <button id="nextDay" aria-label="Next day">▶</button>
       </section>
 
