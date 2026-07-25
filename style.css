@@ -192,18 +192,23 @@ textarea::placeholder,
   box-shadow: var(--shadow);
 }
 
-.entry-grid-top {
+.entry-grid-row1 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
   margin-bottom: 8px;
 }
 
-.entry-grid-bottom {
-  display: grid;
-  grid-template-columns: minmax(110px, 1.3fr) repeat(3, auto) minmax(90px, 0.9fr);
+.entry-grid-row2 {
+  display: flex;
   gap: 8px;
-  align-items: end;
+  margin-bottom: 8px;
+}
+
+.entry-grid-row3 {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr);
+  gap: 8px;
 }
 
 .field label {
@@ -224,15 +229,14 @@ textarea::placeholder,
 }
 
 .check-field {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex: 1;
 }
 
 .check-box {
   min-height: 42px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   font-size: 13px;
   white-space: nowrap;
@@ -263,7 +267,10 @@ button:active {
 }
 
 @media (max-width: 430px) {
-  .entry-grid-bottom {
-    grid-template-columns: 1fr 1fr;
+  .entry-grid-row1 {
+    grid-template-columns: 1fr;
+  }
+  .entry-grid-row2 {
+    flex-direction: column;
   }
 }
